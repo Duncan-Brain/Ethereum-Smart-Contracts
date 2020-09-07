@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
 
-@title A test to match 8-digit hexadecimal RGBA colour
-@notice The matches() function tests if argument is an 8-digit hex RGBA colour
-@dev Contract made using https://github.com/gnidan/solregex
-@dev TODO: Remove unnecessary # from regex
-@return bool is/not 8-digit hexadecimal RGBA color
+///@title A test to match 8-digit hexadecimal RGBA colour
+///@notice The matches() function tests if argument is an 8-digit hex RGBA colour
+///@dev Contract made using https://github.com/gnidan/solregex
+///@dev TODO: Remove unnecessary # from regex
+///@return bool is/not 8-digit hexadecimal RGBA color
 
 library IsHex8RGBA {
     struct State {
