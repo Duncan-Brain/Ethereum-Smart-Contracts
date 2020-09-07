@@ -4,7 +4,6 @@ import "IsHex8RGBA.sol";
 
 ///@title An 500x500 array of pixels with the option to charge per pixel
 ///@dev TODO: Update to latest pragma
-
 contract Canvas {
     bytes9[250000] public pixels;
     address public owner;
@@ -56,9 +55,9 @@ contract Canvas {
         pixelCost = newPixelCost;
     }
 
-    ///@notice Restricts address to changing max 1 pixel per block.
-    ///@notice Similar restrictions could be made to ensure pixel is only
-    ///@notice changed once per block but tx failure could be worse than 'losing'. 
+    ///@notice Restricts address to changing max 1 pixel per block. A similar
+    ///@notice restriction could be made to ensure pixel is only changed once
+    ///@notice per block but tx failure could be worse than 'losing' the pixel.
     function changePixel(string hex8RGBA, uint x, uint y) public payable {
         require(!isPaused, 'Contract Is Paused');
         require(msg.value >= pixelCost, 'Transaction Value Is Incorrect');
