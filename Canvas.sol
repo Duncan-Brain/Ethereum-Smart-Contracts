@@ -56,6 +56,9 @@ contract Canvas {
         pixelCost = newPixelCost;
     }
 
+    ///@notice Restricts address to changing max 1 pixel per block.
+    ///@notice Similar restrictions could be made to ensure pixel is only
+    ///@notice changed once per block but tx failure could be worse than 'losing'. 
     function changePixel(string hex8RGBA, uint x, uint y) public payable {
         require(!isPaused, 'Contract Is Paused');
         require(msg.value >= pixelCost, 'Transaction Value Is Incorrect');
@@ -69,7 +72,9 @@ contract Canvas {
         counter++;
     }
 
-    function clearPixels(uint xTopL, uint yTopL, uint xBottomR, uint yBottomR) public isManager {
+    ///@notice Clears a square of pixels by choosing top left and bottom right coordinates
+    ///@notice For loop can be costly if square is too large.
+    function dangerouslyClearPixels(uint xTopL, uint yTopL, uint xBottomR, uint yBottomR) public isManager {
         require(xTopL > 0 && xTopL <= CANVAS_WIDTH, 'Invalid X Coordinate Value');
         require(yTopL > 0 && yTopL <= CANVAS_HEIGHT, 'Invalid Y Coordinate Value');
         require(xBottomR > 0 && xBottomR <= CANVAS_WIDTH, 'Invalid X Coordinate Value');
